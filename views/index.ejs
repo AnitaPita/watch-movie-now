@@ -1,0 +1,29 @@
+///Code specific webpage that route,
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+
+  <body>
+  <% include templates/header.ejs %>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <ul>
+      <% for (var i = 0; i<5;i++){%>
+        <li> <%=i%>   </li>
+      <%}%>
+    </ul>
+    <p>   <%= points %></p>
+  <p> <%= taco.categoryName %></p>
+  <ul>
+      <% taco.categories.forEach(function(item){ %>
+    <li> <%= item.categoryName%></li>
+
+      <% });%>
+  </ul>
+  <p><%=title%></p>
+  <p> <%=jsonz%></p>
+  </body>
+</html>
