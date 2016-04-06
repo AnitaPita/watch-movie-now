@@ -24,6 +24,14 @@
       <% });%>
   </ul>
   <p><%=title%></p>
-  <p> <%=jsonz%></p>
+  <ul> <% imdb.pages.forEach(function(item){ %>
+      <% item.results.forEach(function(items){%>
+    <li> <%= items.movieTitle%></li>
+    <%});%>
+
+
+    <%});%>
+  </ul>
+
   </body>
 </html>

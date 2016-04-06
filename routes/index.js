@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var http = require('http');
 var vd = require('../videodata.json');
+var md = require( '../imdb.json');
 var request = require('request');
 var url = 'https://yts.ag/api/v2/list_movies.json?genre=horror&page=2';
 
@@ -16,10 +17,10 @@ request({
 
         console.log(body);
         console.log(body);
-        var body = body
+        var body = body;
 
         router.get('/', function (req, res, next) {
-            res.render('index', {title: 'Yousseef', taco: vd, jsonz : body});
+            res.render('index', {title: 'Yousseef', taco: vd, imdb : md});
 
         });
 
