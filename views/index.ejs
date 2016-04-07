@@ -16,14 +16,11 @@
     <% }); %>
 </ul>
 <p><%= title %></p>
-<h1>
-    <% imdb.pages.forEach(function(item){ %>
-    <% item.results.forEach(function(items){ %>
-
-    <img src=<%= items.image %> width="360" height="640"href=<%=items.title%>/>
-    <% }); %>
-    <% }); %>
-</h1>
+<ul>
+    <% for(var i=0; i<imdb.length;i++) { %>
+    <li> <%= imdb[i].movietitle %></li>
+    <% }%>
+</ul>
 
 <footer>
     <% include templates/footer.ejs %>
