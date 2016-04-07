@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var about = require('./routes/about');
 var contact = require('./routes/contact');
 
+
 var app = express();
 
 app.locals.points = "3.14";
@@ -25,6 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + '/public/'));
 
 app.use('/', routes);// object users
 app.use('/about',about);

@@ -1,42 +1,32 @@
 ///Code specific webpage that route,
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
 
-  <body>
-  <% include templates/header.ejs %>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <ul>
-      <% for (var i = 0; i<5;i++){%>
-        <li> <%=i%>   </li>
-      <%}%>
-    </ul>
-    <p>   <%= points %></p>
-  <p> <%= taco.categoryName %></p>
-  <ul>
-      <% taco.categories.forEach(function(item){ %>
-    <li> <%= item.categoryName%></li>
+<body>
+<p>   <%= title %></p>
+<p> <%= taco.categoryName %></p>
+<ul>
+    <% taco.categories.forEach(function(item){ %>
+    <li> <%= item.categoryName %></li>
 
-
-      <% });%>
-  </ul>
-  <p><%=title%></p>
-  <ul>
-
+    <% }); %>
+</ul>
+<p><%= title %></p>
+<h1>
     <% imdb.pages.forEach(function(item){ %>
-      <% item.results.forEach(function(items){%>
-    <li> <%= items.movieTitle%></li>
-    <li><img src=<%=items.image%> width="360" height="640"/></li>
+    <% item.results.forEach(function(items){ %>
 
-    <%});%>
+    <img src=<%= items.image %> width="360" height="640"href=<%=items.title%>/>
+    <% }); %>
+    <% }); %>
+</h1>
 
-
-    <%});%>
-  </ul>
-
-  </body>
+<footer>
+    <% include templates/footer.ejs %>
+</footer>
+</body>
 </html>
