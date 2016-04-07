@@ -21,12 +21,17 @@
       <% taco.categories.forEach(function(item){ %>
     <li> <%= item.categoryName%></li>
 
+
       <% });%>
   </ul>
   <p><%=title%></p>
-  <ul> <% imdb.pages.forEach(function(item){ %>
+  <ul>
+
+    <% imdb.pages.forEach(function(item){ %>
       <% item.results.forEach(function(items){%>
     <li> <%= items.movieTitle%></li>
+    <li><img src=<%=items.image%> width="360" height="640"/></li>
+
     <%});%>
 
 

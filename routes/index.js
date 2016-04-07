@@ -15,12 +15,8 @@ request({
     if (!error && response.statusCode === 200) {
         //var banana = body;
 
-        console.log(body);
-        console.log(body);
-        var body = body;
-
         router.get('/', function (req, res, next) {
-            res.render('index', {title: 'Yousseef', taco: vd, imdb : md});
+            res.render('index', {title: 'not Youssef', taco: vd, imdb : md});
 
         });
 
