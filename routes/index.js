@@ -7,7 +7,7 @@ var vd = require('../videodata.json');
 var request = require('request');
 var url = 'https://yts.ag/api/v2/list_movies.json?genre=horror&page=2';
 var pg = require('pg'); //Added by A.P for router.post
-var connectionString = "pg://apope007:LUNCANI1!@web0.site.uottawa.ca:15432/apope007"; //Added by A.P for router.post
+//var connectionString = "pg://apope007:LUNCANI1!@web0.site.uottawa.ca:15432/apope007"; //Added by A.P for router.post
 
 
 
@@ -27,8 +27,8 @@ request({
 
             var results = [];
             var nice;
-
-            pg.connect(connectionString, function(err, client, done) {
+            var pgclient = new pg.Client(require('./../config/database.json'));
+            pgclient.connect(function(err, client, done) {
          	// Handle connection errors
                 if(err) {
            	        done();
