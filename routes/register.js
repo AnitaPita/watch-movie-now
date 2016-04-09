@@ -3,7 +3,6 @@ var router = express.Router();
 var pg = require('pg');
 var http = require('http');
 
-//var connectionString = "pg://apope007:LUNCANI1!@web0.site.uottawa.ca:15432/apope007";
 
 router.get('/',function (req,res,next)
 {

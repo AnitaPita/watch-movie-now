@@ -10,6 +10,7 @@ var about = require('./routes/about');
 var contact = require('./routes/contact');
 var register = require('./routes/register');
 var moviedetails = require('./routes/moviedetails');
+var details = require('./routes/details');
 
 
 var app = express();
@@ -35,6 +36,7 @@ app.use('/about',about);
 app.use('/contact', contact);
 app.use('/register',register);
 app.use('/moviedetails',moviedetails);
+app.use('/details',details);
  // object routes
 
 // catch 404 and forward to error handler

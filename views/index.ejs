@@ -1,4 +1,3 @@
-///Code specific webpage that route,
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +27,9 @@
 <p><%= title %></p>
 <ul>
     <% for(var i=0; i<imdb.length;i++) { %>
-    <li> <%= imdb[i].movietitle %></li>
+    <form method="post" action="/details">
+    <input type="submit" name="thisname" value="<%= imdb[i].movietitle %>">
+    </form>
     <% }%>
 </ul>
 
