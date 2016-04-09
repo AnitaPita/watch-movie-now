@@ -9,6 +9,35 @@ var url = 'https://yts.ag/api/v2/list_movies.json?genre=horror&page=2';
 var pg = require('pg'); //Added by A.P for router.post
 //var connectionString = "pg://apope007:LUNCANI1!@web0.site.uottawa.ca:15432/apope007"; //Added by A.P for router.post
 
+//var pgclient = new pg.Client(require('./../config/database.json'));
+
+
+router.post('/moviedetails',function (req,res) {
+            var tag = req.body.firstname;
+            var pgclient = new pg.Client(require('./../config/database.json'));
+
+            pgclient.connect(function(err, client, done) {
+            // Handle connection errors
+                if(err) {
+                    done();
+                    console.log(err);
+                    return res.status(500).json({ success: false, data: err});
+                }else{
+                    console.log("I'm alliiiiive22222")
+                }
+                var query = client.query("SELECT * FROM movie WHERE lower(movietitle) LIKE lower('%"+tag+"%')", function(err, answer){
+                    if(!err){
+                        console.log("Let's look at the movies.");
+                        console.log(answer);
+                        res.render('moviedetails', {title: 'details', imdb : answer['rows'], search : tag });//results = answer['rows'];
+                        //res.json(answer['rows']);
+                    }
+                    else{
+                        console.log(err);
+                    }
+                });
+            });
+        });
 
 
 request({
@@ -24,7 +53,7 @@ request({
 
             var results = [];
             var nice;
-
+            console.log("RAAAAA");
             var results = [];
             var nice;
             var pgclient = new pg.Client(require('./../config/database.json'));
@@ -45,6 +74,7 @@ request({
          		});
          	});
         });
+
     }
 });
 
