@@ -43,7 +43,7 @@ request({
                 });
         });
 
-        router.post('/moviedetails',function (req,res) {
+        router.post('/results',function (req,res) {
             var tag = req.body.firstname;
             //var pgclient = new pg.Client(require('./../config/database.json'));
 
@@ -51,7 +51,7 @@ request({
             if(!err){
                 console.log("Let's look at the movies.");
                 console.log(answer);
-                res.render('moviedetails', {title: 'Results', imdb : answer['rows'], search : tag });//results = answer['rows'];
+                res.render('results', {title: 'Results', imdb : answer['rows'], search : tag });//results = answer['rows'];
                 //res.json(answer['rows']);
                 }
             else{

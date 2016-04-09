@@ -9,7 +9,7 @@ var routes = require('./routes/index');
 var about = require('./routes/about');
 var contact = require('./routes/contact');
 var register = require('./routes/register');
-var moviedetails = require('./routes/moviedetails');
+var results = require('./routes/results');
 var details = require('./routes/details');
 
 
@@ -35,7 +35,7 @@ app.use('/', routes);// object users
 app.use('/about',about);
 app.use('/contact', contact);
 app.use('/register',register);
-app.use('/moviedetails',moviedetails);
+app.use('/results',results);
 app.use('/details',details);
  // object routes
 
