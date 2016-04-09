@@ -15,6 +15,16 @@
 
     <% }); %>
 </ul>
+
+<div id = "searchbar">
+        <form method="post" action="/moviedetails">
+            Search For a movie:<br>
+            <input type="text" name="firstname" value="Mickey">
+            <input type="submit" value="Submit">
+            <br>
+            <br>
+        </form></div>
+
 <p><%= title %></p>
 <ul>
     <% for(var i=0; i<imdb.length;i++) { %>

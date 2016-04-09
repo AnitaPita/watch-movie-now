@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title%></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+
+<% include  templates/header.ejs%>
+<h3>There will be a movie here sometime soon.</h3>
+
+<ul>
+    <% for(var i=0; i<imdb.length;i++) { %>
+    <li> <%= imdb[i].movietitle %></li>
+    <% }%>
+    <% if(imdb.length==0) { %>
+    <h2>No movies were found containing "<%=search %>".</h2>
+    <% }%>
+</ul>
+
+</body>
+</html>
