@@ -11,6 +11,7 @@ var contact = require('./routes/contact');
 var register = require('./routes/register');
 var results = require('./routes/results');
 var details = require('./routes/details');
+var edit_data = require('./routes/edit_data');
 
 
 var app = express();
@@ -37,6 +38,7 @@ app.use('/contact', contact);
 app.use('/register',register);
 app.use('/results',results);
 app.use('/details',details);
+app.use('/edit_data',edit_data);
  // object routes
 
 // catch 404 and forward to error handler

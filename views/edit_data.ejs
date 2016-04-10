@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+
+<body>
+<p>   <%= title %></p>
+
+<p>Enter a movie to edit:</p>
+<div id = "searchbar">
+        <form method="post" action="/edit_data">
+            Search For a movie:<br>
+            <input type="text" name="firstname" value="Type the movie">
+            <input type="submit" value="Submit">
+            <br>
+            <br>
+        </form></div>
+
+<p><%= title %></p>
+<ul>
+    <% for(var i=0; i<imdb.length;i++) { %>
+    <form method="post" action="/details">
+    <input type="submit" name="thisname" value="<%= imdb[i].movietitle %>">
+    </form>
+    <% }%>
+</ul>
+
+<footer>
+    <% include templates/footer.ejs %>
+</footer>
+</body>
+</html>

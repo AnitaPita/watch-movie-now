@@ -9,5 +9,12 @@
 <% include  templates/header.ejs%>
 <h3> <%=imdb[0].movietitle%> </h3>
 <p> <%=imdb[0].summary%></p>
+<br/>
+
+<% for(var i=0; i<imdb.length;i++) { %>
+    <p><%roles[i].actor_name%> plays <%roles[i].rolename%></p>
+    <% }%>
+
+<h2>Community Rating: <%= imdb[0].community_rating%>/10</h2>
 </body>
 </html>

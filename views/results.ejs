@@ -7,7 +7,7 @@
 <body>
 
 <% include  templates/header.ejs%>
-<h3>There will be a movie here sometime soon.</h3>
+<h3>Your search for "<%=search %>" returned <%=imdb.length %> result(s).</h3>
 
 <ul>
     <% for(var i=0; i<imdb.length;i++) { %>
@@ -15,7 +15,7 @@
     <input type="submit" name="thisname" value="<%= imdb[i].movietitle %>">
     </form>
     <% }%>
-    
+
     <% if(imdb.length==0) { %>
     <h2>No movies were found containing "<%=search %>".</h2>
     <% }%>
