@@ -38,7 +38,7 @@ router.post('/details',function (req,res) {
                 var query2 = pgclient.query("SELECT actor.actor_name, role_in_movie.rolename FROM actor,movie,role_in_movie WHERE actor.actorid=role_in_movie.actorid AND role_in_movie.movieid=movie.movieid AND movie.movietitle='"+tag+"'",function(err2,ans2){
                     if(!err2){
                     console.log("WHAT ABOUT ACTORS AND ROLES.");
-                    res.render('details', {imdb : answer['rows'], roles : answer2['rows']});//results = answer['rows'];
+                    res.render('details', {imdb : answer['rows'], roles : answer2['rows'], resp : ""});//results = answer['rows'];
                     }
                     else{
                         console.log("Oops I did it again");

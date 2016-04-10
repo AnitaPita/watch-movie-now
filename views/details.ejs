@@ -18,6 +18,10 @@
 
 <br/>
 <h2>Community Rating: <%= imdb[0].community_rating%>/10</h2>
+
+<h2><%= resp%></h2>
+
+ <% if(!resp.startsWith('You')) { %>
 <div id = "enter_rating">
         <form method="post" action="/details2">
             Enter your rating out of 10:<br>
@@ -27,5 +31,7 @@
             <br>
             <br>
         </form></div>
+        <% }%>
+
 </body>
 </html>

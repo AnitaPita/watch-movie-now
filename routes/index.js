@@ -73,7 +73,7 @@ request({
                     if(!err2){
                     console.log(ans2+"waaaaa");
                     console.log(ans2.rows[0].actor_name+" is bae");
-                    res.render('details', {imdb : answer['rows'], roles : ans2['rows']});//results = answer['rows'];
+                    res.render('details', {imdb : answer['rows'], roles : ans2['rows'], resp : ""});//results = answer['rows'];
                     }
                     else{
                         console.log("Oops I did it again");
@@ -106,7 +106,7 @@ request({
                             var query3 = pgclient.query("UPDATE movie SET total_raters=total_raters+1 WHERE "
                             + "movietitle='"+moviename+"'; UPDATE movie  SET community_rating=(community_rating+"+rate+")/2 WHERE  "                                
                             + "movietitle='"+moviename+"';");
-                            res.render('details', {imdb : answer['rows'], roles : ans2['rows']});//results = answer['rows'];
+                            res.render('details', {imdb : answer['rows'], roles : ans2['rows'], resp : 'You rated the movie! Your rating is being processed.'});//results = answer['rows'];
                             }
                             else{
                                 console.log("Oops I did it again");
