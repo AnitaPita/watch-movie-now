@@ -11,7 +11,7 @@ pgclient.connect(function(err, client, done) {
         console.log(err);
         return res.status(500).json({ success: false, data: err});
     }else{
-        console.log("I'm alliiiiive!")
+        console.log("I'm alliiiiive!!")
     }
 });
 
