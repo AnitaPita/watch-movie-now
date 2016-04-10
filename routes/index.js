@@ -118,7 +118,7 @@ request({
             
     });
         router.post('/details',function (req,res) {
-            var tag = req.body.thisname;
+            var tag = req.body.moviename;
             console.log(tag+"qqqqqqqqqqqqqqqq");
             //var pgclient = new pg.Client(require('./../config/database.json'));
 
@@ -130,7 +130,7 @@ request({
                 var query2 = pgclient.query("SELECT actor.actor_name, role_in_movie.rolename FROM actor,movie,role_in_movie WHERE actor.actorid=role_in_movie.actorid AND role_in_movie.movieid=movie.movieid AND movie.movietitle='"+tag+"'",function(err2,ans2){
                     if(!err2){
                     console.log(ans2+"waaaaa");
-                    console.log(ans2.rows[0].actor_name+" is bae");
+                   // console.log(ans2.rows[0].actor_name+" is bae");
                     res.render('details', {imdb : answer['rows'], roles : ans2['rows'], resp : ""});//results = answer['rows'];
                     }
                     else{

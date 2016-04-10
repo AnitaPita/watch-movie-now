@@ -23,7 +23,7 @@ router.get('/',function (req,res,next)
         name: 'Josh'
     });
 });
-
+ ;''
 router.post('/details',function (req,res) {
             var tag = req.body.firstname;
             //var pgclient = new pg.Client(require('./../config/database.json'));
