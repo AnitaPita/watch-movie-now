@@ -67,12 +67,12 @@ request({
             var query = pgclient.query("SELECT * FROM movie WHERE movietitle='"+tag+"'", function(err, answer){
                 console.log("Roger roger");
             if(!err){
-                console.log("Let's look at the movie?????.");
+                    console.log(answer+"weeeee");
                 //console.log(answer);
                 var query2 = pgclient.query("SELECT actor.actor_name, role_in_movie.rolename FROM actor,movie,role_in_movie WHERE actor.actorid=role_in_movie.actorid AND role_in_movie.movieid=movie.movieid AND movie.movietitle='"+tag+"'",function(err2,ans2){
                     if(!err2){
-                    console.log("WHAT ABOUT ACTORS AND ROLES.");
                     console.log(ans2+"waaaaa");
+                    console.log(ans2.rows[0].actor_name+" is bae");
                     res.render('details', {imdb : answer['rows'], roles : ans2['rows']});//results = answer['rows'];
                     }
                     else{
