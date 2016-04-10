@@ -7,7 +7,7 @@
 <body>
 
 <% include  templates/header.ejs%>
-<h3>Your search for "<%=search %>" returned <%=imdb.length %> result(s).</h3>
+<h3>Your search for "<%=search %>" in <%=typesearch %> returned <%=imdb.length %> result(s).</h3>
 
 <ul>
     <% for(var i=0; i<imdb.length;i++) { %>

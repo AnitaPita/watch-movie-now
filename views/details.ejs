@@ -9,6 +9,15 @@
 <% include  templates/header.ejs%>
 <h2> <%=imdb[0].movietitle%> </h2>
 <p> <%=imdb[0].summary%></p>
+
+<div id = "edit_summary">
+        <form method="post" action="/edit">
+            <input type="hidden" name="moviename" value="<%= imdb[0].movietitle %>">
+            <input type="submit" value="Edit Summary">
+            <br>
+            <br>
+        </form></div>
+
 <br/>
 
 <h3> Top Billed Cast </h3>

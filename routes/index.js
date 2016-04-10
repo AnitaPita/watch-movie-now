@@ -45,19 +45,77 @@ request({
 
         router.post('/results',function (req,res) {
             var tag = req.body.firstname;
+            var searchtype = req.body.searchtype;
+            console.log(searchtype);
             //var pgclient = new pg.Client(require('./../config/database.json'));
-
-            var query = pgclient.query("SELECT * FROM movie WHERE lower(movietitle) LIKE lower('%"+tag+"%')", function(err, answer){
-            if(!err){
-                console.log("Let's look at the movies.");
-                console.log(answer);
-                res.render('results', {title: 'Results', imdb : answer['rows'], search : tag });//results = answer['rows'];
-                //res.json(answer['rows']);
+            if(searchtype==="Search Actors")
+            {
+                var query = pgclient.query("SELECT movie.movieid,movie.movietitle,movie.poster_path FROM movie,actor,role_in_movie "
+                    + "WHERE movie.movieid=role_in_movie.movieid AND role_in_movie.actorid=actor.actorid AND lower(actor.actor_name) "
+                    + "LIKE '%"+tag+"%'", function(err, answer){
+                if(!err){
+                    console.log("Let's look at the movies.");
+                    //console.log(answer);
+                    res.render('results', {title: 'Results', imdb : answer['rows'], search : tag, typesearch : "Actor" });//results = answer['rows'];
+                    //res.json(answer['rows']);
                 }
-            else{
+                else{
                 console.log(err);
+                }
+             });
+
             }
+            else if(searchtype==="Search Genres")
+            {
+                var query = pgclient.query("SELECT movie.movieid,movie.movietitle,movie.poster_path FROM movie,genres,genre_relation "
+                    + "WHERE movie.movieid=genre_relation.movieid AND genre_relation.genreid=genres.genreid AND lower(genres.genre_name) "
+                    + "LIKE '%"+tag+"%'", function(err, answer){
+                if(!err){
+                    console.log("Let's look at the movies.");
+                    //console.log(answer);
+                    res.render('results', {title: 'Results', imdb : answer['rows'], search : tag, typesearch : "Genre" });//results = answer['rows'];
+                    //res.json(answer['rows']);
+                }
+                else{
+                console.log(err);
+                }
             });
+
+
+            }
+            else if(searchtype==="Search Directors")
+            {
+                var query = pgclient.query("SELECT movie.movieid,movie.movietitle,movie.poster_path FROM movie,director,directs "
+                    + "WHERE movie.movieid=directs.movieid AND directs.did=director.did AND lower(director.director_name) "
+                    + "LIKE '%"+tag+"%'", function(err, answer){
+                if(!err){
+                    console.log("Let's look at the movies.");
+                    //console.log(answer);
+                    res.render('results', {title: 'Results', imdb : answer['rows'], search : tag, typesearch : "Director" });//results = answer['rows'];
+                    //res.json(answer['rows']);
+                }
+                else{
+                console.log(err);
+                }
+            });
+
+
+            }
+            else
+            {
+                var query = pgclient.query("SELECT * FROM movie WHERE lower(movietitle) LIKE lower('%"+tag+"%')", function(err, answer){
+                if(!err){
+                    console.log("Let's look at the movies.");
+                    //console.log(answer);
+                    res.render('results', {title: 'Results', imdb : answer['rows'], search : tag, typesearch : "Movie" });//results = answer['rows'];
+                    //res.json(answer['rows']);
+                }
+                else{
+                console.log(err);
+                }
+            });
+            }
+            
     });
         router.post('/details',function (req,res) {
             var tag = req.body.thisname;
