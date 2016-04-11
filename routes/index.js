@@ -29,13 +29,14 @@ request({
                 console.log("I'm alliiiiive!")
             }
         });
+        
         router.get('/', function (req, res) {
 
             var results = [];
             var nice;
             console.log("RAAAAA");
             //var pgclient = new pg.Client(require('./../config/database.json'));
-            var query = pgclient.query("SELECT * FROM movie", function(err, answer){
+            var query = pgclient.query("SELECT * FROM movie ORDER BY community_rating DESC", function(err, answer){
                 if(!err){
                     res.render('index', {title: 'You Watch Movie Now!', taco: vd, imdb : answer['rows'] });//results = answer['rows'];
                     //res.json(answer['rows']);
@@ -50,9 +51,9 @@ request({
             //var pgclient = new pg.Client(require('./../config/database.json'));
             if(searchtype==="Search Actors")
             {
-                var query = pgclient.query("SELECT movie.movieid,movie.movietitle,movie.poster_path FROM movie,actor,role_in_movie "
+                var query = pgclient.query("SELECT DISTINCT movie.community_rating, movie.movieid,movie.movietitle,movie.poster_path FROM movie,actor,role_in_movie "
                     + "WHERE movie.movieid=role_in_movie.movieid AND role_in_movie.actorid=actor.actorid AND lower(actor.actor_name) "
-                    + "LIKE $1", ["%"+tag+"%"], function(err, answer){
+                    + "LIKE $1 ORDER BY movie.community_rating DESC", ["%"+tag+"%"], function(err, answer){
                     if(!err){
                         console.log("Let's look at the movies.");
                         //console.log(answer);
@@ -67,7 +68,7 @@ request({
             }
             else if(searchtype==="Search Genres")
             {
-                var query = pgclient.query("SELECT movie.movieid,movie.movietitle,movie.poster_path FROM movie,genres,genre_relation "
+                var query = pgclient.query("SELECT DISTINCT movie.movieid,movie.movietitle,movie.poster_path FROM movie,genres,genre_relation "
                     + "WHERE movie.movieid=genre_relation.movieid AND genre_relation.genreid=genres.genreid AND lower(genres.genre_name) "
                     + "LIKE $1", ["%"+tag+"%"], function(err, answer){
                     if(!err){
@@ -83,7 +84,7 @@ request({
             }
             else if(searchtype==="Search Directors")
             {
-                var query = pgclient.query("SELECT movie.movieid,movie.movietitle,movie.poster_path FROM movie,director,directs "
+                var query = pgclient.query("SELECT DISTINCT movie.movieid,movie.movietitle,movie.poster_path FROM movie,director,directs "
                     + "WHERE movie.movieid=directs.movieid AND directs.did=director.did AND lower(director.director_name) "
                     + "LIKE $1", ["%"+tag+"%"], function(err, answer){
                     if(!err){
@@ -126,6 +127,7 @@ request({
                 }
             });
         });
+
         router.post('/details',function (req,res) {
             var tag = req.body.moviename;
             console.log(tag+"qqqqqqqqqqqqqqqq");
@@ -136,7 +138,9 @@ request({
                 if(!err){
                     console.log(answer+"weeeee");
                     //console.log(answer);
-                    var query2 = pgclient.query("SELECT actor.actor_name, role_in_movie.rolename FROM actor,movie,role_in_movie WHERE actor.actorid=role_in_movie.actorid AND role_in_movie.movieid=movie.movieid AND movie.movietitle='"+tag+"'",function(err2,ans2){
+                    var query2 = pgclient.query("SELECT actor.actor_name, role_in_movie.rolename FROM actor,movie,role_in_movie "
+                        + "WHERE actor.actorid=role_in_movie.actorid AND role_in_movie.movieid=movie.movieid AND "
+                        + "movie.movietitle=$1", [tag], function(err2,ans2){
                         if(!err2){
                             console.log(ans2+"waaaaa");
                             console.log(ans2.rows[0].actor_name+" is bae");
@@ -215,6 +219,31 @@ request({
             });
         });
 
+        router.post('/register',function (req,res,next){
+            console.log("In Submission POST");
+
+            var usrnme = req.body.username;
+            var pw = req.body.pw;
+            var email = req.body.email;
+            var fname = req.body.fname;
+            var lname = req.body.lname;
+
+            console.log(lname);
+
+            var query = pgclient.query("INSERT INTO users (username,pw,lname,fname,email) "
+                + "VALUES ($1,$2,$3,$4,$5)",[usrnme,pw,lname,fname,email],function(err, answer){
+                console.log("BALLLL");
+                if(!err){
+                console.log("Ready to go.");
+                res.redirect("/");
+                }
+                else{
+                    console.log(err);
+                }
+
+            });
+        });
+        console.log("REEEEEE");
     }
 });
 

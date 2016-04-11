@@ -1,26 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= title%></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title><%= title %></title>
+    <link rel='stylesheet' href='stylesheets/index.css'/>
 </head>
+<header>
+    <% include templates/header.ejs %>
+</header>
+
+
 <body>
+<div class=jumbotron>
+    <div id="searchbar">
+        <form method="post" action="/results">
+            <input type="text" name="firstname" placeholder="Enter keyword...">
+            <select name="searchtype">
+                <option value="Search Movies">Search Movies</option>
+                <option value="Search Actors">Search Actors</option>
+                <option value="Search Directors">Search Directors</option>
+                <option value="Search Genres">Search Genres</option>
+            </select>
+            <input type="submit" value="Search">
+            <br>
+            <br>
+        </form>
+    </div>
+    <h3>Your search for "<%=search %>" in <%=typesearch %> returned <%=imdb.length %> result(s).</h3>
 
-<% include  templates/header.ejs%>
-<h3>Your search for "<%=search %>" in <%=typesearch %> returned <%=imdb.length %> result(s).</h3>
-
-<ul>
-    <% for(var i=0; i<imdb.length;i++) { %>
-    <form method="post" action="/details">
-        <input type="image" name="thisname" src="<%= "https://image.tmdb.org/t/p/w342"+imdb[i].poster_path %>">
-        <input type = "hidden" name="moviename" value="<%=imdb[i].movietitle%>" >
-    </form>
-    <% }%>
-
+    <div id="moviesz">
+        <section id="movieDisplay">
+            <% include templates/moviedisplay.ejs %>
+        </section>
+    </div>
     <% if(imdb.length==0) { %>
     <h2>No movies were found containing "<%=search %>".</h2>
     <% }%>
-</ul>
-
+</div>
 </body>
+
+<footer>
+    <% include templates/footer.ejs %>
+</footer>
 </html>

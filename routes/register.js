@@ -36,7 +36,7 @@ router.post('/register',function (req,res,next)
 		}else{
 			console.log("Dogs")
 		}
-		var query = client.query("INSERT INTO users (pw,lname,fname,email) VALUES ('"+pw+"','"+lname+"','"+fname+"','"+email+"');");
+		var query = client.query("INSERT INTO users (username,pw,lname,fname,email) VALUES ($1,$2,$3,$4,$5)",[usrnme,pw,email,fname,lname]);
 		//console.log(query);
 		if(!err){
 			console.log("Ready to go.");
@@ -54,6 +54,6 @@ router.post('/register',function (req,res,next)
 
 	});
 	console.log("REEEEEE");
-})
+});
 
 module.exports = router;
