@@ -116,7 +116,7 @@ request({
 
         });
         router.post('/details',function (req,res) {
-            var tag = req.body.thisname;
+            var tag = req.body.moviename;
             console.log(tag+"qqqqqqqqqqqqqqqq");
             //var pgclient = new pg.Client(require('./../config/database.json'));
 
