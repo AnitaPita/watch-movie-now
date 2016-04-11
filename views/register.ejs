@@ -3,11 +3,14 @@
 <head>
     <title><%= title%></title>
 </head>
+<header><% include  templates/header.ejs%></header>
 <body>
 
-<% include  templates/header.ejs%>
+
+<div class = "container">
 <h3> <%=name%> </h3>
 
+<div class="jumbotron">
 <form method="post" class="pure-form pure-form-aligned" action="/register">
     <fieldset>
         <legend><h1 class="pure-splash-subhead midnightblue">Register</h1>
@@ -53,5 +56,7 @@
         <br/>
         </fieldset>
     </form>
+</div>
+</div>
 </body>
 </html>
