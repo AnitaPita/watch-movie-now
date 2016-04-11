@@ -1,13 +1,6 @@
-body {
-    padding: 50px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-    color:orange;
+body{
+    background-color: orange;
 }
-p
-{
-    color:blue;
-
-}
-a {
-    color: #00B7FF;
+section {
+    color: #0f0f0f;
 }
