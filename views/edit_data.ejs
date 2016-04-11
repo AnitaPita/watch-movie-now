@@ -14,13 +14,14 @@
 <h2>Edit Summary for <%=film[0].movietitle%></h2>
 
 <div id = "editor">
-    <textarea name="summary" form="editme"><%=film[0].summary%></textarea>
-    <form method="post" name="editme" action="/edit">
+    <form method="post" id="editme" action="/editSuccess">
         Search For a movie:<br>
-        <input type="hidden" value="<%=film[0].movietitle%>">
+        <input type="hidden" name="moviename" value="<%=film[0].movietitle%>">
         <input type="submit" value="Submit changes">
         <br>
     </form>
+    <textarea name="summ" form="editme"><%=film[0].summary%></textarea>
+
 </div>
 
 

@@ -12,7 +12,8 @@
 <ul>
     <% for(var i=0; i<imdb.length;i++) { %>
     <form method="post" action="/details">
-        <input type="submit" name="thisname" value="<%= imdb[i].movietitle %>">
+        <input type="image" name="thisname" src="<%= "https://image.tmdb.org/t/p/w342"+imdb[i].poster_path %>">
+        <input type = "hidden" name="moviename" value="<%=imdb[i].movietitle%>" >
     </form>
     <% }%>
 

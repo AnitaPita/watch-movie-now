@@ -27,15 +27,16 @@ router.get('/',function (req,res,next)
 
 router.post('/details',function (req,res) {
     var tag = req.body.thisname;
-    console.log(tag+"qqqqqqqqqqqqqqqq");
     //var pgclient = new pg.Client(require('./../config/database.json'));
 
-    var query = pgclient.query("SELECT * FROM movie WHERE movietitle='"+tag+"'", function(err, answer){
+    var query = pgclient.query("SELECT * FROM movie WHERE movietitle= $1", [tag], function(err, answer){
         console.log("Roger roger");
         if(!err){
             console.log("Let's look at the movie?????.");
             //console.log(answer);
-            var query2 = pgclient.query("SELECT actor.actor_name, role_in_movie.rolename FROM actor,movie,role_in_movie WHERE actor.actorid=role_in_movie.actorid AND role_in_movie.movieid=movie.movieid AND movie.movietitle='"+tag+"'",function(err2,ans2){
+            var query2 = pgclient.query("SELECT actor.actor_name, role_in_movie.rolename FROM actor,movie,role_in_movie WHERE "
+                + "actor.actorid=role_in_movie.actorid AND role_in_movie.movieid=movie.movieid AND "
+                + "movie.movietitle= $1", [tag], function(err2,ans2){
                 if(!err2){
                     console.log("WHAT ABOUT ACTORS AND ROLES.");
                     res.render('details', {imdb : answer['rows'], roles : answer2['rows'], resp : ""});//results = answer['rows'];
