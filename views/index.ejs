@@ -9,24 +9,23 @@
 </header>
 <body>
 
-<div id="searchbar">
-    <form method="post" action="/results">
-        <input type="text" name="firstname" placeholder="Enter keyword...">
-        <select name="searchtype">
-            <option value="Search Movies">Search Movies</option>
-            <option value="Search Actors">Search Actors</option>
-            <option value="Search Directors">Search Directors</option>
-            <option value="Search Genres">Search Genres</option>
-        </select>
-        <input type="submit" value="Search">
-        <br>
-        <br>
-    </form>
-</div>
-
 
 <p><%= title %></p>
 <div class=jumbotron>
+    <div id="searchbar">
+        <form method="post" action="/results">
+            <input type="text" name="firstname" placeholder="Enter keyword...">
+            <select name="searchtype">
+                <option value="Search Movies">Search Movies</option>
+                <option value="Search Actors">Search Actors</option>
+                <option value="Search Directors">Search Directors</option>
+                <option value="Search Genres">Search Genres</option>
+            </select>
+            <input type="submit" value="Search">
+            <br>
+            <br>
+        </form>
+    </div>
     <div id="moviesz">
         <section id="movieDisplay">
             <% include templates/moviedisplay.ejs %>
