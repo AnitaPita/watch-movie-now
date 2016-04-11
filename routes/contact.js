@@ -6,14 +6,7 @@ router.get('/', function(req,res,next)
 {
     res.render('contact',
         {
-           print1:  function()
-           {
-               for(var i = 0; i<5;i++)
-               {
-                   console.log(i);
-               }
-           },
-            name: 'RIP'
+            name: 'RIP',title: "contact"
         });
 });
 module.exports = router;

@@ -1,12 +1,10 @@
-<div class="jumbotron">
-    <p id="movieDisplay">
 
-        <% for(var i = 0; i < imdb.length;i++) { %>
-    <form method="post" action="/details">
-        <input type="image" name="thisname" src="<%= "https://image.tmdb.org/t/p/w342" + imdb[i].poster_path %>">
+<table>
+    <% for(var i = 0; i < imdb.length;i++) { %>
+
+    <form method="post" action="/details" >
+        <input style="padding: 1px" type="image" name="thisname" src="<%= "https://image.tmdb.org/t/p/w342" + imdb[i].poster_path %>">
         <input type="hidden" name="moviename" value="<%= imdb[i].movietitle %>">
     </form>
     <% } %>
-
-    </p>
-</div>
+</table>

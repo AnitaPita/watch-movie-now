@@ -4,7 +4,9 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='stylesheets/index.css'/>
 </head>
-<header> <% include templates/header.ejs%></header>
+<header>
+    <% include templates/header.ejs %>
+</header>
 <body>
 
 <div id="searchbar">
@@ -24,10 +26,13 @@
 
 
 <p><%= title %></p>
-<section id ="movieDisplay">
-    <%include templates/moviedisplay.ejs%>
-</section>
-
+<div class=jumbotron>
+    <div id="moviesz">
+        <section id="movieDisplay">
+            <% include templates/moviedisplay.ejs %>
+        </section>
+    </div>
+</div>
 <footer>
     <% include templates/footer.ejs %>
 </footer>
