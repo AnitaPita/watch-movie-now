@@ -11,36 +11,36 @@
 <p> <%=imdb[0].summary%></p>
 
 <div id = "edit_summary">
-        <form method="post" action="/edit">
-            <input type="hidden" name="moviename" value="<%= imdb[0].movietitle %>">
-            <input type="submit" value="Edit Summary">
-            <br>
-            <br>
-        </form></div>
+    <form method="post" action="/edit">
+        <input type="hidden" name="moviename" value="<%= imdb[0].movietitle %>">
+        <input type="submit" value="Edit Summary">
+        <br>
+        <br>
+    </form></div>
 
 <br/>
 
 <h3> Top Billed Cast </h3>
 <% for(var i=0; i<roles.length;i++) { %>
-    <p><%=roles[i].actor_name%> plays <%=roles[i].rolename%></p>
-    <% }%>
+<p><%=roles[i].actor_name%> plays <%=roles[i].rolename%></p>
+<% }%>
 
 <br/>
 <h2>Community Rating: <%= imdb[0].community_rating%>/10</h2>
 
 <h2><%= resp%></h2>
 
- <% if(!resp.startsWith('You')) { %>
+<% if(!resp.startsWith('You')) { %>
 <div id = "enter_rating">
-        <form method="post" action="/details2">
-            Enter your rating out of 10:<br>
-            <input type="text" name="rate" value="">
-            <input type="hidden" name="moviename" value="<%= imdb[0].movietitle %>">
-            <input type="submit" value="Rate movie out of 10">
-            <br>
-            <br>
-        </form></div>
-        <% }%>
+    <form method="post" action="/details2">
+        Enter your rating out of 10:<br>
+        <input type="text" name="rate" value="">
+        <input type="hidden" name="moviename" value="<%= imdb[0].movietitle %>">
+        <input type="submit" value="Rate movie out of 10">
+        <br>
+        <br>
+    </form></div>
+<% }%>
 
 </body>
 </html>

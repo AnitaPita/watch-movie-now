@@ -1,31 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %></title>
+    <title>Edit Summary</title>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
 
 <body>
-<p>   <%= title %></p>
 
-<p>Enter a movie to edit:</p>
-<div id = "searchbar">
-        <form method="post" action="/edit_data">
-            Search For a movie:<br>
-            <input type="text" name="firstname" value="Type the movie">
-            <input type="submit" value="Submit">
-            <br>
-            <br>
-        </form></div>
+<header>
+    <% include templates/header.ejs %>
+</header>
 
-<p><%= title %></p>
-<ul>
-    <% for(var i=0; i<imdb.length;i++) { %>
-    <form method="post" action="/details">
-    <input type="submit" name="thisname" value="<%= imdb[i].movietitle %>">
+<h2>Edit Summary for <%=film[0].movietitle%></h2>
+
+<div id = "editor">
+    <textarea name="summary" form="editme"><%=film[0].summary%></textarea>
+    <form method="post" name="editme" action="/edit">
+        Search For a movie:<br>
+        <input type="hidden" value="<%=film[0].movietitle%>">
+        <input type="submit" value="Submit changes">
+        <br>
     </form>
-    <% }%>
-</ul>
+</div>
+
 
 <footer>
     <% include templates/footer.ejs %>

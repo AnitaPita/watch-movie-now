@@ -15,29 +15,30 @@
     <% }); %>
 </ul>
 
-<div id="searchbar">
+<div id = "searchbar">
     <form method="post" action="/results">
-        Search For a movie:<br>
-        <input type="text" name="firstname" value="Movie">
-        <input type="submit" value="Submit">
+        <input type="text" name="firstname" placeholder="Enter keyword...">
+        <select name="searchtype">
+            <option value="Search Movies">Search Movies</option>
+            <option value="Search Actors">Search Actors</option>
+            <option value="Search Directors">Search Directors</option>
+            <option value="Search Genres">Search Genres</option>
+        </select>
+        <input type="submit" value="Search">
         <br>
         <br>
-    </form>
-</div>
+    </form></div>
+
+
 
 <p><%= title %></p>
-<div>
-
-    <% for(var i = 0; i < imdb.length;i++) { %>
-    <p>
+<ul>
+    <% for(var i=0; i<imdb.length;i++) { %>
     <form method="post" action="/details">
-        <input type="image" name="thisname" src="<%= "https://image.tmdb.org/t/p/w342/" + imdb[i].poster_path %>">
-        <input type="hidden" name="moviename" value="<%= imdb[0].movietitle %>">
+        <input type="submit" name="thisname" value="<%= imdb[i].movietitle %>">
     </form>
-    </p>
-    <% } %>
-
-</div>
+    <% }%>
+</ul>
 
 <footer>
     <% include templates/footer.ejs %>
