@@ -4,7 +4,7 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
-
+<header> <% include templates/header.ejs%></header>
 <body>
 
 <div id="searchbar">
@@ -24,14 +24,8 @@
 
 
 <p><%= title %></p>
-<section><p>
-        <% for(var i = 0; i < imdb.length;i++) { %>
-    <form method="post" action="/details">
-        <input type="image" name="thisname" src="<%= "https://image.tmdb.org/t/p/w342" + imdb[i].poster_path %>">
-        <input type="hidden" name="moviename" value="<%= imdb[i].movietitle %>">
-    </form>
-    <% } %>
-    </p>
+<section>
+    <%include templates/moviedisplay.ejs%>
 </section>
 
 <footer>
